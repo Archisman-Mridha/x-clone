@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package x_clone.backend.protobuf.events.profile_created;
+
+option go_package = "generated/";
+
+message ProfileCreatedEvent {
+  int32 id = 1;
+
+  string name     = 2;
+  string username = 3;
+}

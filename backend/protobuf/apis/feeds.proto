@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package x_clone.backend.protobuf.apis.feeds;
+
+import "google/protobuf/empty.proto";
+import "page-request.proto";
+
+option go_package = "generated/";
+
+service FeedsAPI {
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  rpc GetFeed(GetFeedRequest) returns (GetFeedResponse);
+}
+
+message GetFeedRequest {
+  x_clone.backend.protobuf.PageRequest page_request = 1;
+}
+
+message GetFeedResponse {
+  repeated int32 post_ids = 1;
+}

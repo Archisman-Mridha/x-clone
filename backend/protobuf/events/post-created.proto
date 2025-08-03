@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package x_clone.backend.protobuf.events.post_created;
+
+option go_package = "generated/";
+
+message PostCreatedEvent {
+  int32 id       = 1;
+  int32 owner_id = 2;
+}

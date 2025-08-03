@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package x_clone.backend.protobuf;
+
+option go_package = "generated/";
+
+message PageRequest {
+  uint32 offset = 1;
+  uint32 limit  = 2;
+}

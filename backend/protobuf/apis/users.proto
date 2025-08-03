@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package x_clone.backend.protobuf.apis.users;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "generated/";
+
+service UsersAPI {
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  rpc Signup(SignupRequest) returns (SigninResponse);
+  rpc Signin(SigninRequest) returns (SigninResponse);
+}
+
+message SignupRequest {
+  string name     = 1;
+  string email    = 2;
+  string username = 3;
+  string password = 4;
+}
+
+message SigninRequest {
+  oneof identifier {
+    string email    = 1;
+    string username = 2;
+  }
+
+  string password = 3;
+}
+
+message SigninResponse {
+  string jwt = 1;
+}

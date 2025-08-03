@@ -1,0 +1,54 @@
+version: "2"
+
+sql:
+  - engine: postgresql
+    schema: ./users/internal/postgresql/schema.sql
+    queries: ./users/internal/postgresql/queries.sql
+    gen:
+      go:
+        sql_package: "database/sql"
+        out: ./users/internal/postgresql/generated
+        package: generated
+        emit_interface: true
+        emit_params_struct_pointers: true
+        emit_result_struct_pointers: true
+        emit_pointers_for_null_types: true
+
+  - engine: postgresql
+    schema: ./profiles/internal/postgresql/schema.sql
+    queries: ./profiles/internal/postgresql/queries.sql
+    gen:
+      go:
+        sql_package: "database/sql"
+        out: ./profiles/internal/postgresql/generated
+        package: generated
+        emit_interface: true
+        emit_params_struct_pointers: true
+        emit_result_struct_pointers: true
+        emit_pointers_for_null_types: true
+
+  - engine: postgresql
+    schema: ./posts/internal/postgresql/schema.sql
+    queries: ./posts/internal/postgresql/queries.sql
+    gen:
+      go:
+        sql_package: "database/sql"
+        out: ./posts/internal/postgresql/generated
+        package: generated
+        emit_interface: true
+        emit_params_struct_pointers: true
+        emit_result_struct_pointers: true
+        emit_pointers_for_null_types: true
+
+  - engine: postgresql
+    schema: ./followships/internal/postgresql/schema.sql
+    queries: ./followships/internal/postgresql/queries.sql
+    gen:
+      go:
+        sql_package: "database/sql"
+        out: ./followships/internal/postgresql/generated
+        package: generated
+        emit_interface: true
+        emit_params_struct_pointers: true
+        emit_result_struct_pointers: true
+        emit_pointers_for_null_types: true

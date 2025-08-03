@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package x_clone.backend.protobuf.apis.posts;
+
+import "google/protobuf/empty.proto";
+import "page-request.proto";
+
+option go_package = "generated/";
+
+service PostsAPI {
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+
+  rpc GetPostsOfUser(GetPostsOfUserRequest) returns (GetPostsResponse);
+  rpc GetPosts(GetPostsRequest) returns (GetPostsResponse);
+}
+
+message CreatePostRequest {
+  string description = 2;
+}
+
+message CreatePostResponse {
+  int32 post_id = 1;
+}
+
+message GetPostsOfUserRequest {
+  int32 owner_id = 1;
+
+  x_clone.backend.protobuf.PageRequest page_request = 2;
+}
+
+message GetPostsRequest {
+  repeated int32 post_ids = 1;
+}
+
+message GetPostsResponse {
+  repeated Post posts = 1;
+}
+
+message Post {
+  int32 id       = 1;
+  int32 owner_id = 2;
+
+  string description = 3;
+  string created_at  = 4;
+}
