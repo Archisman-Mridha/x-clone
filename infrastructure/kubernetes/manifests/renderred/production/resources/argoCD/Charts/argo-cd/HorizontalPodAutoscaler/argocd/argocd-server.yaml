@@ -1,0 +1,33 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+    labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: argocd
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: argocd-server
+        app.kubernetes.io/part-of: argocd
+        app.kubernetes.io/version: v3.0.12
+        helm.sh/chart: argo-cd-8.2.7
+    name: argocd-server
+    namespace: argocd
+spec:
+    maxReplicas: 5
+    metrics:
+        - resource:
+            name: memory
+            target:
+                averageUtilization: 50
+                type: Utilization
+          type: Resource
+        - resource:
+            name: cpu
+            target:
+                averageUtilization: 50
+                type: Utilization
+          type: Resource
+    minReplicas: 1
+    scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: argocd-server

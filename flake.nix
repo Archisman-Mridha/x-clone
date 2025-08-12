@@ -11,6 +11,8 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    kue.url = "github:Archisman-Mridha/kue";
   };
 
   outputs =
@@ -19,11 +21,14 @@
       nixpkgs,
       flake-utils,
       rust-overlay,
+      kue,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        overlays = [ (import rust-overlay) ];
+        overlays = [
+          (import rust-overlay)
+        ];
 
         pkgs = import nixpkgs {
           inherit system overlays;
@@ -59,8 +64,7 @@
             sqlc
 
             k3d
-            cue
-            holos
+            kue.packages.${system}.default
 
             bazelisk
           ];
