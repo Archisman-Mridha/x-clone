@@ -1,7 +1,11 @@
-package production
+package development
 
-import argocdLib "github.com/archisman-mridha/x-clone/infrastructure/kubernetes/manifests/lib/argocd"
+import lib "github.com/archisman-mridha/x-clone/infrastructure/kubernetes/manifests/lib"
+
+clusterName: "development"
 
 {
-	argoCD: argocdLib.#ArgoCD @app()
+	argoCD: lib.#ArgoCD @app( )
+
+  microservices: lib.#Microservices
 }

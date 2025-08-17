@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-microservice
+  namespace: microservices
+  labels:
+    app.kubernetes.io/name: posts-microservice
+    app.kubernetes.io/component: application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts-microservice
+  template:
+    metadata:
+      labels:
+        app: posts-microservice
+    spec:
+      containers:
+        - name: posts-microservice
+          image: ghcr.io/archisman-mridha/posts-microservice:latest
+          ports:
+            - containerPort: 4000
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts:
+            - name: config
+              mountPath: /var/posts-microservice/config.yaml
+              readOnly: true
+              subPath: config.yaml
+          livenessProbe:
+            grpc:
+              port: 4000
+          readinessProbe:
+            grpc:
+              port: 4000
+      volumes:
+        - name: config
+          secret:
+            secretName: posts-microservice-config

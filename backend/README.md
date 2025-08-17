@@ -10,4 +10,6 @@
 
 - [Type conversions in GoLang](https://go.dev/ref/spec#Conversions)
 
+- [How to Correctly Validate Passwords - Most Websites Do It Wrong](https://blog.boot.dev/open-source/how-to-validate-passwords/)
+
 - [Golden config for golangci-lint](https://gist.github.com/maratori/47a4d00457a92aa426dbd48a18776322)
