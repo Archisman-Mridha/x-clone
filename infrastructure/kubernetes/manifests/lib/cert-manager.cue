@@ -32,6 +32,8 @@ import (
     }
   }
 
+  let cloudflareCredentialsSecretName = "cloudflare-credentials"
+
   // ClusterIssuer represents a certificate authority (CA) able to sign (issue) certificates in
   // response to Certificate Signing Requests (CSRs).
   // The ClusterIssuer resource is cluster scoped. This means that when referencing a secret via
@@ -81,6 +83,13 @@ import (
     }
   }
 
+  cloudflareCredentialsSealedSecret: sealedSecretV1Alpha1.#SealedSecret & {
+    metadata: {
+      name: "cloudflare-credentials"
+      namespace: #CertManager.namespace
+    }
+  }
+
   wildcardCertificate: certificateV1.#Certificate & {
     metadata: {
       name: "wildcard"
@@ -99,13 +108,6 @@ import (
         kind: "ClusterIssuer"
         name: "letsencrypt"
       }
-    }
-  }
-
-  cloudflareCredentialsSealedSecret: sealedSecretV1Alpha1.#SealedSecret & {
-    metadata: {
-      name: "cloudflare-credentials"
-      namespace: #CertManager.namespace
     }
   }
 }

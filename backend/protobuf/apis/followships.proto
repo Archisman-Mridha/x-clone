@@ -4,14 +4,22 @@ package x_clone.backend.protobuf.apis.followships;
 
 import "google/protobuf/empty.proto";
 import "page-request.proto";
+import "grafbase/options.proto";
 
 option go_package = "generated/";
 
 service FollowshipsAPI {
+  option (grafbase.graphql.default_to_query_fields) = true;
+
   rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 
-  rpc Follow(FollowRequest) returns (google.protobuf.Empty);
-  rpc Unfollow(UnfollowRequest) returns (google.protobuf.Empty);
+  rpc Follow(FollowRequest) returns (google.protobuf.Empty) {
+    option (grafbase.graphql.is_mutation) = true;
+  };
+
+  rpc Unfollow(UnfollowRequest) returns (google.protobuf.Empty) {
+    option (grafbase.graphql.is_mutation) = true;
+  };
 
   rpc Follows(FollowsRequest) returns (FollowsResponse);
 

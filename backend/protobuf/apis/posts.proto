@@ -4,13 +4,18 @@ package x_clone.backend.protobuf.apis.posts;
 
 import "google/protobuf/empty.proto";
 import "page-request.proto";
+import "grafbase/options.proto";
 
 option go_package = "generated/";
 
 service PostsAPI {
+  option (grafbase.graphql.default_to_query_fields) = true;
+
   rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 
-  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse) {
+    option (grafbase.graphql.is_mutation) = true;
+  };
 
   rpc GetPostsOfUser(GetPostsOfUserRequest) returns (GetPostsResponse);
   rpc GetPosts(GetPostsRequest) returns (GetPostsResponse);

@@ -14,3 +14,7 @@ plugins:
   # Generates optimized marshalling & unmarshalling code for ProtoBuf APIv2.
   - remote: buf.build/community/planetscale-vtprotobuf:v0.6.0
     out: .
+
+  # Generates a GraphQL subgraph to be used in concert with the Grafbase gRPC extension.
+  - local: protoc-gen-grafbase-subgraph
+    out: ../gateway/generated

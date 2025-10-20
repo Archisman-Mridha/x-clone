@@ -1,6 +1,6 @@
 package lib
 
-import infrastructureProviderV1Alpha2 "operator.cluster.x-k8s.io/infrastructureprovider/v1alpha2"
+import infrastructureProvider "operator.cluster.x-k8s.io/infrastructureprovider/v1alpha2"
 
 // Cluster API is a Kubernetes subproject focused on providing declarative APIs and tooling to
 // simplify provisioning, upgrading, and operating multiple Kubernetes clusters.
@@ -36,7 +36,7 @@ import infrastructureProviderV1Alpha2 "operator.cluster.x-k8s.io/infrastructurep
     }
   }
 
-  infrastructureProvider: infrastructureProviderV1Alpha2.#InfrastructureProvider & {
+  infrastructureProvider: infrastructureProvider.#InfrastructureProvider & {
     let capaVersion = "v2.8.4"
 
     metadata: {

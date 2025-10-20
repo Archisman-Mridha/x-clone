@@ -2,7 +2,7 @@ package production
 
 import lib "github.com/archisman-mridha/x-clone/infrastructure/kubernetes/manifests/lib"
 
-clusterName: "production"
+let clusterName = "production"
 
 {
   networking: {
@@ -71,6 +71,6 @@ clusterName: "production"
   backup: {
     velero: #Velero @app( )
 
-    csiSnapshotter: #CSISnapshotter @app( )
+    externalSnapshotter: #ExternalSnapshotter @app( )
   }
 }

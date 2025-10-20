@@ -116,14 +116,14 @@ package lib
             }
           }
         }
+
+        metrics: enabled: true
       }
 
       // Make Cilium components expose metrics.
 
                 prometheus: enabled: true
       operator: prometheus: enabled: true
-
-      hubble: metrics: enabled: true
     }
   }
 }

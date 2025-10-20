@@ -4,10 +4,13 @@ package x_clone.backend.protobuf.apis.profiles;
 
 import "google/protobuf/empty.proto";
 import "page-request.proto";
+import "grafbase/options.proto";
 
 option go_package = "generated/";
 
 service ProfilesAPI {
+  option (grafbase.graphql.default_to_query_fields) = true;
+
   rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 
   rpc SearchProfiles(SearchProfilesRequest) returns (SearchProfilesResponse);

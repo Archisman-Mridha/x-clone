@@ -22,8 +22,6 @@ package lib
     }
   }
 
-  serviceMonitorEnabled: metrics: serviceMonitor: enabled: true
-
   defaultProject: appProjectV1Alpha1.#AppProject & {
     metadata: {
       name: "default"
@@ -44,3 +42,5 @@ package lib
     }
   }
 }
+
+let serviceMonitorEnabled = metrics: serviceMonitor: enabled: true

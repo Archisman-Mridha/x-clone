@@ -3,13 +3,19 @@ syntax = "proto3";
 package x_clone.backend.protobuf.apis.users;
 
 import "google/protobuf/empty.proto";
+import "grafbase/options.proto";
 
 option go_package = "generated/";
 
 service UsersAPI {
+  option (grafbase.graphql.default_to_query_fields) = true;
+
   rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
 
-  rpc Signup(SignupRequest) returns (SigninResponse);
+  rpc Signup(SignupRequest) returns (SigninResponse) {
+    option (grafbase.graphql.is_mutation) = true;
+  };
+
   rpc Signin(SigninRequest) returns (SigninResponse);
 }
 

@@ -1,0 +1,708 @@
+extend schema
+  @link(url: "https://grafbase.com/extensions/grpc/0.2.0", import: ["@protoServices", "@protoEnums", "@protoMessages", "@grpcMethod"])
+  @protoServices(
+    definitions: [
+      {
+        name: "x_clone.backend.protobuf.apis.feeds.FeedsAPI"
+        methods: [
+          {
+            name: "Ping"
+            inputType: ".google.protobuf.Empty"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "GetFeed"
+            inputType: ".x_clone.backend.protobuf.apis.feeds.GetFeedRequest"
+            outputType: ".x_clone.backend.protobuf.apis.feeds.GetFeedResponse"
+          }
+        ]
+      }
+      {
+        name: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI"
+        methods: [
+          {
+            name: "Ping"
+            inputType: ".google.protobuf.Empty"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "Follow"
+            inputType: ".x_clone.backend.protobuf.apis.followships.FollowRequest"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "Unfollow"
+            inputType: ".x_clone.backend.protobuf.apis.followships.UnfollowRequest"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "Follows"
+            inputType: ".x_clone.backend.protobuf.apis.followships.FollowsRequest"
+            outputType: ".x_clone.backend.protobuf.apis.followships.FollowsResponse"
+          }
+          {
+            name: "GetFollowers"
+            inputType: ".x_clone.backend.protobuf.apis.followships.GetFollowersRequest"
+            outputType: ".x_clone.backend.protobuf.apis.followships.GetFollowersResponse"
+          }
+          {
+            name: "GetFollowees"
+            inputType: ".x_clone.backend.protobuf.apis.followships.GetFolloweesRequest"
+            outputType: ".x_clone.backend.protobuf.apis.followships.GetFolloweesResponse"
+          }
+          {
+            name: "GetFollowerAndFolloweeCounts"
+            inputType: ".x_clone.backend.protobuf.apis.followships.GetFollowerAndFolloweeCountsRequest"
+            outputType: ".x_clone.backend.protobuf.apis.followships.GetFollowerAndFolloweeCountsResponse"
+          }
+        ]
+      }
+      {
+        name: "x_clone.backend.protobuf.apis.posts.PostsAPI"
+        methods: [
+          {
+            name: "Ping"
+            inputType: ".google.protobuf.Empty"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "CreatePost"
+            inputType: ".x_clone.backend.protobuf.apis.posts.CreatePostRequest"
+            outputType: ".x_clone.backend.protobuf.apis.posts.CreatePostResponse"
+          }
+          {
+            name: "GetPostsOfUser"
+            inputType: ".x_clone.backend.protobuf.apis.posts.GetPostsOfUserRequest"
+            outputType: ".x_clone.backend.protobuf.apis.posts.GetPostsResponse"
+          }
+          {
+            name: "GetPosts"
+            inputType: ".x_clone.backend.protobuf.apis.posts.GetPostsRequest"
+            outputType: ".x_clone.backend.protobuf.apis.posts.GetPostsResponse"
+          }
+        ]
+      }
+      {
+        name: "x_clone.backend.protobuf.apis.profiles.ProfilesAPI"
+        methods: [
+          {
+            name: "Ping"
+            inputType: ".google.protobuf.Empty"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "SearchProfiles"
+            inputType: ".x_clone.backend.protobuf.apis.profiles.SearchProfilesRequest"
+            outputType: ".x_clone.backend.protobuf.apis.profiles.SearchProfilesResponse"
+          }
+          {
+            name: "GetProfilePreviews"
+            inputType: ".x_clone.backend.protobuf.apis.profiles.GetProfilePreviewsRequest"
+            outputType: ".x_clone.backend.protobuf.apis.profiles.GetProfilePreviewsResponse"
+          }
+        ]
+      }
+      {
+        name: "x_clone.backend.protobuf.apis.users.UsersAPI"
+        methods: [
+          {
+            name: "Ping"
+            inputType: ".google.protobuf.Empty"
+            outputType: ".google.protobuf.Empty"
+          }
+          {
+            name: "Signup"
+            inputType: ".x_clone.backend.protobuf.apis.users.SignupRequest"
+            outputType: ".x_clone.backend.protobuf.apis.users.SigninResponse"
+          }
+          {
+            name: "Signin"
+            inputType: ".x_clone.backend.protobuf.apis.users.SigninRequest"
+            outputType: ".x_clone.backend.protobuf.apis.users.SigninResponse"
+          }
+        ]
+      }
+    ]
+  )
+  @protoMessages(
+    definitions: [
+      {
+        name: ".google.protobuf.Empty"
+        fields: [
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.PageRequest"
+        fields: [
+          {
+            name: "offset"
+            number: 1
+            repeated: false
+            type: "uint32"
+          }
+          {
+            name: "limit"
+            number: 2
+            repeated: false
+            type: "uint32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.feeds.GetFeedRequest"
+        fields: [
+          {
+            name: "page_request"
+            number: 1
+            repeated: false
+            type: ".x_clone.backend.protobuf.PageRequest"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.feeds.GetFeedResponse"
+        fields: [
+          {
+            name: "post_ids"
+            number: 1
+            repeated: true
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.FollowRequest"
+        fields: [
+          {
+            name: "followee_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.UnfollowRequest"
+        fields: [
+          {
+            name: "followee_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.FollowsRequest"
+        fields: [
+          {
+            name: "followee_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.FollowsResponse"
+        fields: [
+          {
+            name: "follows"
+            number: 1
+            repeated: false
+            type: "bool"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.GetFollowersRequest"
+        fields: [
+          {
+            name: "user_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+          {
+            name: "page_request"
+            number: 2
+            repeated: false
+            type: ".x_clone.backend.protobuf.PageRequest"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.GetFollowersResponse"
+        fields: [
+          {
+            name: "follower_ids"
+            number: 1
+            repeated: true
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.GetFolloweesRequest"
+        fields: [
+          {
+            name: "user_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+          {
+            name: "page_request"
+            number: 2
+            repeated: false
+            type: ".x_clone.backend.protobuf.PageRequest"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.GetFolloweesResponse"
+        fields: [
+          {
+            name: "followee_ids"
+            number: 1
+            repeated: true
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.GetFollowerAndFolloweeCountsRequest"
+        fields: [
+          {
+            name: "user_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.followships.GetFollowerAndFolloweeCountsResponse"
+        fields: [
+          {
+            name: "follower_count"
+            number: 1
+            repeated: false
+            type: "int64"
+          }
+          {
+            name: "followee_count"
+            number: 2
+            repeated: false
+            type: "int64"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.posts.CreatePostRequest"
+        fields: [
+          {
+            name: "description"
+            number: 2
+            repeated: false
+            type: "string"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.posts.CreatePostResponse"
+        fields: [
+          {
+            name: "post_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.posts.GetPostsOfUserRequest"
+        fields: [
+          {
+            name: "owner_id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+          {
+            name: "page_request"
+            number: 2
+            repeated: false
+            type: ".x_clone.backend.protobuf.PageRequest"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.posts.GetPostsRequest"
+        fields: [
+          {
+            name: "post_ids"
+            number: 1
+            repeated: true
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.posts.GetPostsResponse"
+        fields: [
+          {
+            name: "posts"
+            number: 1
+            repeated: true
+            type: ".x_clone.backend.protobuf.apis.posts.Post"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.posts.Post"
+        fields: [
+          {
+            name: "id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+          {
+            name: "owner_id"
+            number: 2
+            repeated: false
+            type: "int32"
+          }
+          {
+            name: "description"
+            number: 3
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "created_at"
+            number: 4
+            repeated: false
+            type: "string"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.profiles.SearchProfilesRequest"
+        fields: [
+          {
+            name: "query"
+            number: 1
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "page_request"
+            number: 2
+            repeated: false
+            type: ".x_clone.backend.protobuf.PageRequest"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.profiles.SearchProfilesResponse"
+        fields: [
+          {
+            name: "profile_previews"
+            number: 1
+            repeated: true
+            type: ".x_clone.backend.protobuf.apis.profiles.ProfilePreview"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.profiles.GetProfilePreviewsRequest"
+        fields: [
+          {
+            name: "ids"
+            number: 1
+            repeated: true
+            type: "int32"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.profiles.GetProfilePreviewsResponse"
+        fields: [
+          {
+            name: "profile_previews"
+            number: 1
+            repeated: true
+            type: ".x_clone.backend.protobuf.apis.profiles.ProfilePreview"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.profiles.ProfilePreview"
+        fields: [
+          {
+            name: "id"
+            number: 1
+            repeated: false
+            type: "int32"
+          }
+          {
+            name: "name"
+            number: 2
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "username"
+            number: 3
+            repeated: false
+            type: "string"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.users.SignupRequest"
+        fields: [
+          {
+            name: "name"
+            number: 1
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "email"
+            number: 2
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "username"
+            number: 3
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "password"
+            number: 4
+            repeated: false
+            type: "string"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.users.SigninRequest"
+        fields: [
+          {
+            name: "email"
+            number: 1
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "username"
+            number: 2
+            repeated: false
+            type: "string"
+          }
+          {
+            name: "password"
+            number: 3
+            repeated: false
+            type: "string"
+          }
+        ]
+      }
+      {
+        name: ".x_clone.backend.protobuf.apis.users.SigninResponse"
+        fields: [
+          {
+            name: "jwt"
+            number: 1
+            repeated: false
+            type: "string"
+          }
+        ]
+      }
+    ]
+  )
+
+type Query {
+  x_clone_backend_protobuf_apis_feeds_FeedsAPI_Ping(input: EmptyObject): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.feeds.FeedsAPI", method: "Ping")
+  x_clone_backend_protobuf_apis_feeds_FeedsAPI_GetFeed(input: x_clone_backend_protobuf_apis_feeds_GetFeedRequestInput): x_clone_backend_protobuf_apis_feeds_GetFeedResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.feeds.FeedsAPI", method: "GetFeed")
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_Ping(input: EmptyObject): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "Ping")
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_Follows(input: x_clone_backend_protobuf_apis_followships_FollowsRequestInput): x_clone_backend_protobuf_apis_followships_FollowsResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "Follows")
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_GetFollowers(input: x_clone_backend_protobuf_apis_followships_GetFollowersRequestInput): x_clone_backend_protobuf_apis_followships_GetFollowersResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "GetFollowers")
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_GetFollowees(input: x_clone_backend_protobuf_apis_followships_GetFolloweesRequestInput): x_clone_backend_protobuf_apis_followships_GetFolloweesResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "GetFollowees")
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_GetFollowerAndFolloweeCounts(input: x_clone_backend_protobuf_apis_followships_GetFollowerAndFolloweeCountsRequestInput): x_clone_backend_protobuf_apis_followships_GetFollowerAndFolloweeCountsResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "GetFollowerAndFolloweeCounts")
+  x_clone_backend_protobuf_apis_posts_PostsAPI_Ping(input: EmptyObject): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.posts.PostsAPI", method: "Ping")
+  x_clone_backend_protobuf_apis_posts_PostsAPI_GetPostsOfUser(input: x_clone_backend_protobuf_apis_posts_GetPostsOfUserRequestInput): x_clone_backend_protobuf_apis_posts_GetPostsResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.posts.PostsAPI", method: "GetPostsOfUser")
+  x_clone_backend_protobuf_apis_posts_PostsAPI_GetPosts(input: x_clone_backend_protobuf_apis_posts_GetPostsRequestInput): x_clone_backend_protobuf_apis_posts_GetPostsResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.posts.PostsAPI", method: "GetPosts")
+  x_clone_backend_protobuf_apis_profiles_ProfilesAPI_Ping(input: EmptyObject): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.profiles.ProfilesAPI", method: "Ping")
+  x_clone_backend_protobuf_apis_profiles_ProfilesAPI_SearchProfiles(input: x_clone_backend_protobuf_apis_profiles_SearchProfilesRequestInput): x_clone_backend_protobuf_apis_profiles_SearchProfilesResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.profiles.ProfilesAPI", method: "SearchProfiles")
+  x_clone_backend_protobuf_apis_profiles_ProfilesAPI_GetProfilePreviews(input: x_clone_backend_protobuf_apis_profiles_GetProfilePreviewsRequestInput): x_clone_backend_protobuf_apis_profiles_GetProfilePreviewsResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.profiles.ProfilesAPI", method: "GetProfilePreviews")
+  x_clone_backend_protobuf_apis_users_UsersAPI_Ping(input: EmptyObject): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.users.UsersAPI", method: "Ping")
+  x_clone_backend_protobuf_apis_users_UsersAPI_Signin(input: x_clone_backend_protobuf_apis_users_SigninRequestInput): x_clone_backend_protobuf_apis_users_SigninResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.users.UsersAPI", method: "Signin")
+}
+
+type Mutation {
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_Follow(input: x_clone_backend_protobuf_apis_followships_FollowRequestInput): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "Follow")
+  x_clone_backend_protobuf_apis_followships_FollowshipsAPI_Unfollow(input: x_clone_backend_protobuf_apis_followships_UnfollowRequestInput): EmptyObject @grpcMethod(service: "x_clone.backend.protobuf.apis.followships.FollowshipsAPI", method: "Unfollow")
+  x_clone_backend_protobuf_apis_posts_PostsAPI_CreatePost(input: x_clone_backend_protobuf_apis_posts_CreatePostRequestInput): x_clone_backend_protobuf_apis_posts_CreatePostResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.posts.PostsAPI", method: "CreatePost")
+  x_clone_backend_protobuf_apis_users_UsersAPI_Signup(input: x_clone_backend_protobuf_apis_users_SignupRequestInput): x_clone_backend_protobuf_apis_users_SigninResponse @grpcMethod(service: "x_clone.backend.protobuf.apis.users.UsersAPI", method: "Signup")
+}
+
+"64 bit signed integer" scalar I64
+"64 bit unsigned integer" scalar U64
+
+"An empty object " scalar EmptyObject
+
+"""
+A generic empty message that you can re-use to avoid defining duplicated
+ empty messages in your APIs. A typical example is to use it as the request
+ or the response type of an API method. For instance:
+
+     service Foo {
+       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+     }
+"""
+input google_protobuf_EmptyInput {
+}
+
+input x_clone_backend_protobuf_PageRequestInput {
+  offset: Int
+  limit: Int
+}
+
+input x_clone_backend_protobuf_apis_feeds_GetFeedRequestInput {
+  page_request: x_clone_backend_protobuf_PageRequestInput
+}
+
+input x_clone_backend_protobuf_apis_followships_FollowRequestInput {
+  followee_id: Int
+}
+
+input x_clone_backend_protobuf_apis_followships_UnfollowRequestInput {
+  followee_id: Int
+}
+
+input x_clone_backend_protobuf_apis_followships_FollowsRequestInput {
+  followee_id: Int
+}
+
+input x_clone_backend_protobuf_apis_followships_GetFollowersRequestInput {
+  user_id: Int
+  page_request: x_clone_backend_protobuf_PageRequestInput
+}
+
+input x_clone_backend_protobuf_apis_followships_GetFolloweesRequestInput {
+  user_id: Int
+  page_request: x_clone_backend_protobuf_PageRequestInput
+}
+
+input x_clone_backend_protobuf_apis_followships_GetFollowerAndFolloweeCountsRequestInput {
+  user_id: Int
+}
+
+input x_clone_backend_protobuf_apis_posts_CreatePostRequestInput {
+  description: String
+}
+
+input x_clone_backend_protobuf_apis_posts_GetPostsOfUserRequestInput {
+  owner_id: Int
+  page_request: x_clone_backend_protobuf_PageRequestInput
+}
+
+input x_clone_backend_protobuf_apis_posts_GetPostsRequestInput {
+  post_ids: [Int!]
+}
+
+input x_clone_backend_protobuf_apis_profiles_SearchProfilesRequestInput {
+  query: String
+  page_request: x_clone_backend_protobuf_PageRequestInput
+}
+
+input x_clone_backend_protobuf_apis_profiles_GetProfilePreviewsRequestInput {
+  ids: [Int!]
+}
+
+input x_clone_backend_protobuf_apis_users_SignupRequestInput {
+  name: String
+  email: String
+  username: String
+  password: String
+}
+
+input x_clone_backend_protobuf_apis_users_SigninRequestInput {
+  email: String
+  username: String
+  password: String
+}
+
+"An empty object " scalar EmptyObject
+
+"""
+A generic empty message that you can re-use to avoid defining duplicated
+ empty messages in your APIs. A typical example is to use it as the request
+ or the response type of an API method. For instance:
+
+     service Foo {
+       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+     }
+"""
+type google_protobuf_Empty {
+}
+
+type x_clone_backend_protobuf_apis_feeds_GetFeedResponse {
+  post_ids: [Int!]
+}
+
+type x_clone_backend_protobuf_apis_followships_FollowsResponse {
+  follows: Boolean!
+}
+
+type x_clone_backend_protobuf_apis_followships_GetFollowersResponse {
+  follower_ids: [Int!]
+}
+
+type x_clone_backend_protobuf_apis_followships_GetFolloweesResponse {
+  followee_ids: [Int!]
+}
+
+type x_clone_backend_protobuf_apis_followships_GetFollowerAndFolloweeCountsResponse {
+  follower_count: I64!
+  followee_count: I64!
+}
+
+type x_clone_backend_protobuf_apis_posts_CreatePostResponse {
+  post_id: Int!
+}
+
+type x_clone_backend_protobuf_apis_posts_GetPostsResponse {
+  posts: [x_clone_backend_protobuf_apis_posts_Post!]
+}
+
+type x_clone_backend_protobuf_apis_posts_Post {
+  id: Int!
+  owner_id: Int!
+  description: String!
+  created_at: String!
+}
+
+type x_clone_backend_protobuf_apis_profiles_SearchProfilesResponse {
+  profile_previews: [x_clone_backend_protobuf_apis_profiles_ProfilePreview!]
+}
+
+type x_clone_backend_protobuf_apis_profiles_GetProfilePreviewsResponse {
+  profile_previews: [x_clone_backend_protobuf_apis_profiles_ProfilePreview!]
+}
+
+type x_clone_backend_protobuf_apis_profiles_ProfilePreview {
+  id: Int!
+  name: String!
+  username: String!
+}
+
+type x_clone_backend_protobuf_apis_users_SigninResponse {
+  jwt: String!
+}

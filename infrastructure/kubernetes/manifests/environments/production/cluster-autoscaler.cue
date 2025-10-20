@@ -29,8 +29,8 @@ import (
       // provisioning and de-provisioning of nodes within a Kubernetes cluster.
       cloudProvider: "clusterapi"
       
-      // This means, the cluster in which Cluster AutoScaler will be running, is both the management
-      // and the workload cluster.
+      // This means, the cluster in which Cluster AutoScaler will be running, is both the
+      // management and the workload cluster.
       // Or, in other words, the workload cluster is managing itself using ClusterAPI.
       clusterAPIMode: "incluster-incluster"
 

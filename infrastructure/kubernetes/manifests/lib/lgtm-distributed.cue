@@ -7,8 +7,4 @@ package lib
 
   releaseName: "lgtm-distributed"
   namespace: "grafana"
-
-  values: {
-    grafana: enabled: false
-  }
 }

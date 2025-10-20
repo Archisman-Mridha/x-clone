@@ -1,0 +1,43 @@
+# Grafbase is the easiest way to manage large scale federated graphs and is the fastest GraphQL
+# Gateway on the market.
+
+[gateway]
+
+[authentication]
+# If the client could not be authenticated, deny access
+default = "deny"
+
+# How to handle subgraph request failures.
+# A subgraph request can fail when the service times out, returns an error code, or reaches its
+# rate limit.
+# When you enable subgraph retries, the gateway executes them with an exponential backoff.
+# The engine adds jitter to the times to prevent the thundering herd problem where too many
+# requests reach the subgraph simultaneously. The gateway applies a jitter multiplier between 0.0
+# to 2.0 to the retry backoff.
+[gateway.retry]
+enabled = true
+#
+# Whether mutations should be retried at all.
+retry_mutations = false
+
+# Exposing gRPC services as part of the federated GraphQL API.
+
+[[extensions.grpc.config.services]]
+name = "x_clone.backend.protobuf.apis.users.UsersAPI"
+address = "{{ env.USERS_API_URL }}"
+
+[[extensions.grpc.config.services]]
+name = "x_clone.backend.protobuf.apis.profiles.ProfilesAPI"
+address = "{{ env.PROFILES_API_URL }}"
+
+[[extensions.grpc.config.services]]
+name = "x_clone.backend.protobuf.apis.posts.PostsAPI"
+address = "{{ env.POSTS_API_URL }}"
+
+[[extensions.grpc.config.services]]
+name = "x_clone.backend.protobuf.apis.followships.FollowshipsAPI"
+address = "{{ env.FOLLOWSHIPS_API_URL }}"
+
+[[extensions.grpc.config.services]]
+name = "x_clone.backend.protobuf.apis.feeds.FeedsAPI"
+address = "{{ env.FEEDS_API_URL }}"
